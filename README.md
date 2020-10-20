@@ -1,6 +1,6 @@
 # EmployeeTracker
 
-This application is a command-line application that is an employee tracker.  It allows the user to do the following: add departments, roles and employees; view departments, roles and employees; update employee roles.
+This application is a command-line application that is an employee tracker.  It allows the user to do the following: add departments, roles and employees; view departments, roles and employees; update employee roles.  The user will also be able to remove employees, departments and roles from the system.
 
 ## Table of Contents
   * [Installation](#installation)
