@@ -2,6 +2,7 @@ const mysql = require("mysql");
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+
 const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
@@ -156,23 +157,18 @@ function addNewDepartments() {
         .prompt([
             {
                 type: "input",
-                message: "Department ID",
-                name: "id",
-            },
-            {
-                type: "input",
                 message: "Name of the department?",
                 name: "name",
             },
         ])
         .then(function (answer) {
-            const sqlAddDepartment = "INSERT INTO department (id, name) VALUES ( ? , ?)";
+            const sqlAddDepartment = "INSERT INTO department (name) VALUES ( ?)";
             connection.query(
                 sqlAddDepartment,
-                [answer.id, answer.name],
+                [answer.name],
                 (err, res) => {
                     if (err) throw err;
-                    console.log("Successful");
+                    console.log("Success")
                     init();
                 }
             );
@@ -182,11 +178,6 @@ function addNewDepartments() {
 function addNewRole() {
     inquirer
         .prompt([
-            {
-                type: "input",
-                message: "Deparment ID number",
-                name: "id",
-            },
             {
                 type: "input",
                 message: "Title of new role",
@@ -204,12 +195,12 @@ function addNewRole() {
             },
         ])
         .then(function (answer) {
-            const sqlAddRole = "INSERT INTO role (id, title, salary, department_id ) VALUES ( ?, ?, ?, ?)";
+            const sqlAddRole = "INSERT INTO role (title, salary, department_id ) VALUES ( ?, ?, ?, ?)";
             connection.query(
                 sqlAddRole,
-                [answer.id, answer.title, answer.salary, answer.department_id], (err, res) => {
+                [answer.title, answer.salary, answer.department_id], (err, res) => {
                     if (err) throw err;
-                    console.log("Successful");
+                    console.log("Success");
                     init();
                 }
             );
@@ -250,7 +241,7 @@ function removeEmployeeDR() {
 function removeEmployee() {
     inquirer
         .prompt({
-            name: "id",
+            name: "name",
             type: "input",
             message: "ID of employee you would like to remove from the system"
         })
